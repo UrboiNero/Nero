@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>JavaScript Practice</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 20px;
+		}
+		input[type="number"] {
+			padding: 10px;
+			width: 100px;
+			margin-right: 10px;
+		}
+		button {
+			padding: 10px 15px;
+		}
+		.result {
+			margin-top: 20px;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+
+<h1>Factorial of Last Two Digits Of Matric. Number</h1>
+
+Input your matric number (non-negative integer):
+
+<input type="number" id="matricNo" min="0" required>
+<button onclick="calculateFactorial()">Calculate Factorial</button>
+
+<div class="result" id="result"></div>
+
+<script type="text/javascript">
+	function lastTwoDigitsOfMatricNoFactorial(n) {
+		if (n < 0) {
+			return "Invalid input: Factorial is not defined for negative numbers.";
+		}
+
+		let factorial = 1;
+
+		for (let i = 2; i <= n; i++) {
+			factorial *= i;
+		} 
+		return factorial;
+	}
+
+	function calculateFactorial() {
+		const matricNo = parseInt(document.getElementById("matricNo").value);
+		
+		if (isNaN(matricNo) || matricNo < 0) {
+			document.getElementById("result").innerText = "Please enter a valid non-negative integer.";
+			return;
+		}
+
+		const lastTwoDigits = lastTwoDigitsOfMatricNoFactorial(matricNo);
+		
+		document.getElementById("result").innerText = `Last two digits of ${matricNo}! are: ${lastTwoDigits}`;
+	}
+</script>
+</body>
+</html>

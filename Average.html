@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>JavaScript Practice</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 20px;
+		}
+		input[type="number"] {
+			padding: 10px;
+			width: 100px;
+			margin-right: 10px;
+		}
+		button {
+			padding: 10px 15px;
+		}
+		.result {
+			margin-top: 20px;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+
+<h1>Calculate Average of Numbers in a Range</h1>
+
+Input your range:
+
+<label for="beginning">Beginning:</label>
+<input type="number" id="beginning" required>
+
+<label for="end">End:</label>
+<input type="number" id="end" required>
+
+<button onclick="calculateAverage()">Calculate Average</button>
+
+<div class="result" id="result"></div>
+
+<script type="text/javascript">
+	function averageofnumbers(beginning, end) {
+		let sum = 0;
+		for (let i = beginning; i <= end; i++) {
+			sum += i;
+		}
+
+		const average = sum / (end - beginning + 1);
+		return average;
+	}
+
+	function calculateAverage() {
+		const beginning = parseInt(document.getElementById("beginning").value);
+		const end = parseInt(document.getElementById("end").value);
+		
+		if (isNaN(beginning) || isNaN(end) || beginning > end) {
+			document.getElementById("result").innerText = "Please enter a valid range where the beginning is less than or equal to the end.";
+			return;
+		}
+
+		const average = averageofnumbers(beginning, end);
+		
+		document.getElementById("result").innerText = `The average of numbers from ${beginning} to ${end} is: ${average}`;
+	}
+</script>
+
+</body>
+</html>

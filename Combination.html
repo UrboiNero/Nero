@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Combination Calculator</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 20px;
+		}
+		input[type="number"] {
+			padding: 10px;
+			width: 100px;
+			margin-right: 10px;
+		}
+		button {
+			padding: 10px 15px;
+		}
+		.result {
+			margin-top: 20px;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+
+<h1>Calculate Combination (C(x, y))</h1>
+
+Input your Value:
+
+<label for="x">x</label>
+<input type="number" id="x" min="0" required>
+
+<br>
+
+input your Value:
+<label for="y">y</label>
+<input type="number" id="y" min="0" required>
+
+<button onclick="calculateCombination()">Calculate Combination</button>
+
+<div class="result" id="result"></div>
+
+<script type="text/javascript">
+	function factorial(num) {
+		if (num === 0 || num === 1) {
+			return 1;
+		}
+		let result = 1;
+		for (let i = 2; i <= num; i++) {
+			result *= i;
+		}
+		return result;
+	}
+
+	function combination(x, y) {
+		if (y > x) {
+			[x, y] = [y, x];
+		}
+
+		const numerator = factorial(x);
+		const denominator = factorial(y) * factorial(x - y);
+
+		return numerator / denominator;
+	}
+
+	function calculateCombination() {
+		const x = parseInt(document.getElementById("x").value);
+		const y = parseInt(document.getElementById("y").value);
+		
+		if (isNaN(x) || isNaN(y) || x < 0 || y < 0) {
+			document.getElementById("result").innerText = "Please enter valid non-negative integers for x and y.";
+			return;
+		}
+
+		const result = combination(x, y);
+		
+		document.getElementById("result").innerText = `C(${x}, ${y}) is: ${result}`;
+	}
+</script>
+</body>
+</html>
